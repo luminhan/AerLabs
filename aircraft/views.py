@@ -7,6 +7,10 @@ from django.db.models import Q
 
 
 def get(request, code):
+
+    if request.method != 'GET':
+        return JsonResponse({"error": "Method not allowed."})
+
     url = 'https://opensky-network.org/api/states/all'
     try:
         airport = Airport.objects.get(Q(iata_code=code) | Q(gps_code=code))
