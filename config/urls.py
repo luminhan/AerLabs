@@ -15,8 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from aircraft.views import get
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/', include('aircraft.urls'))
+    # path('admin/', admin.site.urls),
+    path('api/v1/<str:code>/', get, name='aircraft-get')
 ]
